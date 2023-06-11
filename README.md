@@ -1,6 +1,16 @@
-# Expense_Tracker_App
+# expense_tracker_app
 
+Flutter Expense Tracker App With SqfLite | Provider.
 
-Flutter Expense Tracker App With SqfLite | Provider. 
+## Getting Started
 
-A complete expense app that tracks expenses based on categories and displays the pie chart of categories. also displays the line chart for weekly transactions.
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
