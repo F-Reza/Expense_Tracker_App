@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/pages/category_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,11 +12,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Expense Tracker App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
+      initialRoute: CategoryPage.routeName,
+      routes: {
+        CategoryPage.routeName: (context) => const CategoryPage(),
+      },
 
     );
   }
