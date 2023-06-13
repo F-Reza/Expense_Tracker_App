@@ -49,5 +49,16 @@ class DBHelper {
   }
 
 
+  static Future<List<ExpenseCategory>> getCategories() async {
+    final db = await open();
+    final mapList = await db.query(tableExpCategory, orderBy: '$expenseCatColTitle asc');
+    return List.generate(mapList.length, (index) =>
+        ExpenseCategory.fromMap(mapList[index]));
+  }
+
+
+
+
+
 
 }

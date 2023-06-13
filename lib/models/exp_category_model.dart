@@ -39,4 +39,5 @@ class ExpenseCategory{
   String toString() {
     return 'ExpenseCategory{title: $title, entries: $entries, totalAmount: $totalAmount, icon: $icon}';
   }
+
 }

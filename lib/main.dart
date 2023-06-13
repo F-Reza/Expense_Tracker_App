@@ -1,8 +1,15 @@
 import 'package:expense_tracker_app/pages/category_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'provider/expense_providet.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => ExpenseProvider()),
+    ],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
