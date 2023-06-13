@@ -26,7 +26,6 @@ class DBHelper {
 
 
   Future<Database> get database async {
-    print('------------------ Started ------------------');
     return open();
   }
 
@@ -57,10 +56,6 @@ class DBHelper {
   }
 
 
-  static Future<int> insertCategory(ExpenseCategory expenseCategory) async{
-    final db = await open();
-    return db.insert(tableExpCategory, expenseCategory.toMap());
-  }
 
   static Future<List<ExpenseCategory>> getCategories() async {
     final db = await open();
@@ -69,6 +64,25 @@ class DBHelper {
     return List.generate(mapList.length, (index) =>
         ExpenseCategory.fromMap(mapList[index]));
   }
+
+  //Update Category
+  static Future<int> updateCategory(ExpenseCategory expenseCategory) async {
+    final db = await open();
+    return db.update(tableExpCategory, expenseCategory.toMap(),
+        where: '$expenseCatColTitle = ?',
+        whereArgs: [expenseCatColTitle]);
+  }
+
+  static Future<int> insertExpense(Expense expense) async{
+    final db = await open();
+    return db.insert(tableExpense, expense.toMap());
+  }
+
+
+/*static Future<int> insertCategory(ExpenseCategory expenseCategory) async{
+    final db = await open();
+    return db.insert(tableExpCategory, expenseCategory.toMap());
+  }*/
 
 /*await database.transaction((txn) async {
   await txn.execute('CREATE TABLE Test1 (id INTEGER PRIMARY KEY)');
