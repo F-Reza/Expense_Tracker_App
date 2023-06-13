@@ -37,10 +37,11 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
               elevation: 5,
               color: Colors.white70,
               child: ListTile(
-                leading: Icon(model.icon,size: 35,),
-                title: Text('${model.title} : (${model.entries})'),
-                trailing: Text(model.totalAmount.toString(),
-                    style: const TextStyle(fontSize: 18)),
+                leading: Icon(model.icon,size: 35,color: Colors.blue,),
+                title: Text(model.title,style: const TextStyle(fontSize: 16,color: Colors.blue)),
+                subtitle: Text('entries: ${model.entries}'),
+                trailing: Text('৳ ${model.totalAmount.toStringAsFixed(2)}',
+                    style: const TextStyle(fontSize: 16,color: Colors.blue)),
               ),
             );
           }),

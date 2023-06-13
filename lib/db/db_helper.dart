@@ -64,23 +64,11 @@ class DBHelper {
 
   static Future<List<ExpenseCategory>> getCategories() async {
     final db = await open();
-    final mapList = await db.query(tableExpCategory, orderBy: '$expenseCatColTitle asc');
+    //final mapList = await db.query(tableExpCategory, orderBy: '$expenseCatColTitle asc');
+    final mapList = await db.query(tableExpCategory);
     return List.generate(mapList.length, (index) =>
         ExpenseCategory.fromMap(mapList[index]));
   }
-
-  /*static Future<List<ExpenseCategory>> fetchCategories() async {
-    final db = await open();
-    return await db.transaction((txn) async {
-      return await txn.query(tableExpCategory).then((data) {
-        final converted = List<Map<String, dynamic>>.from(data);
-        List<ExpenseCategory> nList = List.generate(converted.length,
-                (index) => ExpenseCategory.fromMap(converted[index]));
-        return nList;
-      });
-    });
-  }*/
-
 
 /*await database.transaction((txn) async {
   await txn.execute('CREATE TABLE Test1 (id INTEGER PRIMARY KEY)');
