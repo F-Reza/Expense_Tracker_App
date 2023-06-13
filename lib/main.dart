@@ -2,7 +2,7 @@ import 'package:expense_tracker_app/pages/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'provider/expense_providet.dart';
+import 'provider/expense_provider.dart';
 
 void main() {
   runApp(MultiProvider(

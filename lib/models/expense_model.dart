@@ -38,7 +38,7 @@ class Expense{
       title: map[expenseColTitle],
       amount: map[expenseColAmount],
       dateTime: map[expenseColDateTime],
-      category: map[expenseColCategory]);
+      category: map[expenseColCategory],);
 
   @override
   String toString() {

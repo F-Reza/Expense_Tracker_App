@@ -12,19 +12,19 @@ class ExpenseCategory{
   final String title;
   int entries = 0;
   double totalAmount = 0.0;
-  final IconData icon;
+  final IconData? icon;
 
   ExpenseCategory({
     required this.title,
     required this.entries,
     required this.totalAmount,
-    required this.icon});
+    this.icon});
 
   Map <String, dynamic> toMap() {
     var map = <String,dynamic> {
     expenseCatColTitle: title,
     expenseCatColEntries: entries,
-    expenseCatColTotalAmount: totalAmount,
+    expenseCatColTotalAmount: totalAmount.toString(),
     };
     return map;
   }
@@ -32,12 +32,11 @@ class ExpenseCategory{
   factory ExpenseCategory.fromMap(Map<String, dynamic> map) => ExpenseCategory(
       title: map[expenseCatColTitle],
       entries: map[expenseCatColEntries],
-      totalAmount: map[expenseCatColTotalAmount],
+      totalAmount: double.parse(map[expenseCatColTotalAmount]),
       icon: icons[map[expenseCatColTitle]]!);
 
   @override
   String toString() {
     return 'ExpenseCategory{title: $title, entries: $entries, totalAmount: $totalAmount, icon: $icon}';
   }
-
 }
