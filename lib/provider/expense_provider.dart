@@ -11,13 +11,13 @@ class ExpenseProvider extends ChangeNotifier {
   List<Expense> _expenses = [];
   List<Expense> get expenseList => _expenses;
 
-
+  //Get Categories
   getCategories() async{
     _categories = await DBHelper.getCategories();
     notifyListeners();
   }
 
-
+  //Update Category
   Future<void> updateCategory(String category, int entries, double totalAmount) async {
     var file = _categories.firstWhere((element) => element.title == category);
     file.entries = entries;
@@ -25,7 +25,6 @@ class ExpenseProvider extends ChangeNotifier {
     await DBHelper.updateCategory(category, entries, totalAmount);
     notifyListeners();
   }
-
 
   //Insert Expense
   Future<bool> insertExpense(Expense expense) async {
@@ -35,7 +34,11 @@ class ExpenseProvider extends ChangeNotifier {
       _expenses.add(expense);
       notifyListeners();
       var ex = findCategory(expense.category);
-      updateCategory(expense.category, ex.entries + 1, ex.totalAmount + expense.amount);
+      updateCategory(
+          expense.category,
+          ex.entries + 1,
+          ex.totalAmount + expense.amount
+      );
       notifyListeners();
       return true;
     }
@@ -46,14 +49,15 @@ class ExpenseProvider extends ChangeNotifier {
     return _categories.firstWhere((element) => element.title == title);
   }
 
-  Map<String, dynamic> calculateEntriesAndAmount(String category) {
+
+  /*Map<String, dynamic> calculateEntriesAndAmount(String category) {
     double total = 0.0;
     var list = _expenses.where((element) => element.category == category);
     for (final i in list) {
       total += i.amount;
     }
     return {'entries': list.length, 'totalAmount': total};
-  }
+  }*/
 
   double calculateTotalExpenses() {
     return _categories.fold(

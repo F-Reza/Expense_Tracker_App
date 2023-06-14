@@ -2,6 +2,7 @@ import 'package:expense_tracker_app/pages/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/expens_page.dart';
 import 'provider/expense_provider.dart';
 
 void main() {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: CategoryPage.routeName,
       routes: {
         CategoryPage.routeName: (context) => const CategoryPage(),
+        ExpensePage.routeName: (context) => const ExpensePage(),
       },
 
     );
