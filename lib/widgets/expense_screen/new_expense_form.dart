@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../../constants/icons.dart';
 import '../../models/expense_model.dart';
+import '../../provider/expense_provider.dart';
 
 class ExpenseForm extends StatefulWidget {
   const ExpenseForm({super.key});
@@ -139,7 +141,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
     );
     print(expense.toString());
     //final rowId = await DBHelper.insertContact(contact);
-    /*final status = await Provider
+    final status = await Provider
         .of<ExpenseProvider>(context, listen: false)
         .insertExpense(expense);
     if (status) {
@@ -147,7 +149,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
     }
     else {
       print('------------Insert failed!-------------');
-    }*/
+    }
 
   }
 }
