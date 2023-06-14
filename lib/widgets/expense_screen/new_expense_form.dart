@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../../constants/icons.dart';
 
 class ExpenseForm extends StatefulWidget {
   const ExpenseForm({super.key});
@@ -11,6 +14,8 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+  String? _date;
+  String _initialValue = 'Others';
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +31,8 @@ class _ExpenseFormState extends State<ExpenseForm> {
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Type contact name..',
-                labelText: 'Name',
+                hintText: 'Title of expense..',
+                labelText: 'Title',
                 prefixIcon: Icon(Icons.person),
               ),
               validator: (value) {
@@ -50,7 +55,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Enter amount..',
+                hintText: 'Amount of expense..',
                 labelText: 'Amount',
                 prefixIcon: Icon(Icons.person),
               ),
@@ -67,8 +72,85 @@ class _ExpenseFormState extends State<ExpenseForm> {
               },
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(_date==null ?'Select Date' : _date!),
+                    IconButton(
+                        onPressed: () => _pickDate(),
+                        icon: const Icon(Icons.calendar_month)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 5,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  children: [
+                    const Expanded(child: Text('Select Category')),
+                    DropdownButton(
+                        items: icons.keys.map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(e),
+                            ),
+                        ),
+                        ).toList(),
+                        value: _initialValue,
+                        onChanged: (newValue){
+                          _initialValue = newValue!;
+                        }),
+                  ],
+                ),
+              ),
+            ),
+          ),
+         /* DropdownButton<String>(
+            isExpanded: true,
+            value: _initialValue,
+            hint: const Text('Select Your Blood Group'),
+            items: icons.keys.map((e) =>
+                DropdownMenuItem(
+                    value: e,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(e),
+                    )),
+            ).toList(),
+            onChanged: (value) {
+              setState(() {
+                _initialValue = value!;
+              });
+            },
+          ),*/
+          
         ],
       ),
     );
+  }
+
+  void _pickDate() async{
+    final selectedDate = await showDatePicker(context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2023),
+        lastDate: DateTime.now());
+
+    if (selectedDate!=null) {
+      setState(() {
+        _date = DateFormat('dd/MM/yyyy').format(selectedDate);
+        //_date = DateFormat('hh:mm:a').format(DateTime.now());
+      });
+    }
   }
 }
