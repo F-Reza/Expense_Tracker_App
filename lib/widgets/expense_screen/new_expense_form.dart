@@ -132,7 +132,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
   Future<void> _getData() async {
     var xDate = _date != null ? _date ! : DateTime.now();
-    print('------------Insert TEST-------------');
+    print('------------Insert DATA-------------');
     final expense = Expense(
       title: titleController.text,
       amount: double.parse(amountController.text),

@@ -44,7 +44,7 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
 
                   Navigator.push(context,
                     MaterialPageRoute(builder: (context) =>
-                        ExpensePage(expenseCategory: model,)),
+                        ExpensePage(expenseCategory: model)),
                   );
                 },
                 leading: Icon(model.icon,size: 35,color: Colors.blue,),

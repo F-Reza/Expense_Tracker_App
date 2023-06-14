@@ -82,6 +82,17 @@ class DBHelper {
   }
 
 
+  //Get Data by ID
+  static Future<Expense> getExpensesByTitle(String title) async {
+    final db = await open();
+    final mapList = await db.query(tableExpense,
+        where: '$expenseColTitle = ?',
+        whereArgs: [title]);
+    return Expense.fromMap(mapList.first);
+  }
+
+
+
 /*static Future<int> insertCategory(ExpenseCategory expenseCategory) async{
     final db = await open();
     return db.insert(tableExpCategory, expenseCategory.toMap());

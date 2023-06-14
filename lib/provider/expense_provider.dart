@@ -17,6 +17,8 @@ class ExpenseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<Expense> getExpensesByTitle(String title) async => DBHelper.getExpensesByTitle(title);
+
   //Update Category
   Future<void> updateCategory(String category, int entries, double totalAmount) async {
     var file = _categories.firstWhere((element) => element.title == category);
@@ -48,8 +50,6 @@ class ExpenseProvider extends ChangeNotifier {
   ExpenseCategory findCategory(String title) {
     return _categories.firstWhere((element) => element.title == title);
   }
-
-
   /*Map<String, dynamic> calculateEntriesAndAmount(String category) {
     double total = 0.0;
     var list = _expenses.where((element) => element.category == category);
@@ -58,6 +58,7 @@ class ExpenseProvider extends ChangeNotifier {
     }
     return {'entries': list.length, 'totalAmount': total};
   }*/
+
 
   double calculateTotalExpenses() {
     return _categories.fold(
