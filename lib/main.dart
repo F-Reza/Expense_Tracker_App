@@ -1,4 +1,4 @@
-import 'package:expense_tracker_app/pages/category_page.dart';
+import 'package:expense_tracker_app/pages/Home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
         //useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      initialRoute: CategoryPage.routeName,
+      initialRoute: HomePage.routeName,
       routes: {
-        CategoryPage.routeName: (context) => const CategoryPage(),
+        HomePage.routeName: (context) => const HomePage(),
         ExpensePage.routeName: (context) => const ExpensePage(),
       },
 

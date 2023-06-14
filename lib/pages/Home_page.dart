@@ -4,9 +4,9 @@ import 'package:expense_tracker_app/widgets/expense_screen/new_expense_form.dart
 import 'package:flutter/material.dart';
 
 
-class CategoryPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   static const String routeName = '/';
-  const CategoryPage({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
