@@ -44,9 +44,9 @@ class ExpenseProvider extends ChangeNotifier {
       var ex = findCategory(expense.category);
       ex.totalAmount = ex.totalAmount + expense.amount;
       ex.entries = ex.entries + 1;
-      expense.category  = ex.title ;
+      expense.category  = ex.title;
       updateCategory(ex);
-
+      notifyListeners();
       return true;
     }
     return false;

@@ -16,6 +16,7 @@ dependencies:
   url_launcher:
   intl:
   path:
+  draggable_fab:
 
 dev_dependencies:
   flutter_test:
