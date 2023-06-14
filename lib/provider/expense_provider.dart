@@ -18,19 +18,17 @@ class ExpenseProvider extends ChangeNotifier {
   }
 
 
-  Future<bool> updateCategory(ExpenseCategory expenseCategory) async {
+  Future<void> updateCategory(String category, int entries, double totalAmount) async {
+    print('-----------------updateCategory----------------');
 
-    final rowId = await DBHelper.updateCategory(expenseCategory);
-    if (rowId > 0) {
+    var file = _categories.firstWhere((element) => element.title == category);
+    file.entries = entries;
+    file.totalAmount = totalAmount;
 
-      var file = _categories.firstWhere((element) => element.title == expenseCategory.title);
-      file.entries = expenseCategory.entries;
-      file.totalAmount = expenseCategory.totalAmount;
-
-      notifyListeners();
-      return true;
-    }
-    return false;
+    print('-----------------Print Value----------------');
+    print('$entries & $totalAmount');
+    //await DBHelper.updateCategory(entries, totalAmount);
+    notifyListeners();
   }
 
 
@@ -39,13 +37,10 @@ class ExpenseProvider extends ChangeNotifier {
     final rowId = await DBHelper.insertExpense(expense);
     if(rowId > 0) {
       expense.id = rowId;
-      expenseList.add(expense);
+      _expenses.add(expense);
       notifyListeners();
       var ex = findCategory(expense.category);
-      ex.totalAmount = ex.totalAmount + expense.amount;
-      ex.entries = ex.entries + 1;
-      expense.category  = ex.title;
-      updateCategory(ex);
+      updateCategory(expense.category, ex.entries + 1, ex.totalAmount + expense.amount);
       notifyListeners();
       return true;
     }
