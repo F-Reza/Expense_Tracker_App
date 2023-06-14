@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../constants/icons.dart';
+import '../../models/expense_model.dart';
 
 class ExpenseForm extends StatefulWidget {
   const ExpenseForm({super.key});
@@ -16,6 +16,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   final amountController = TextEditingController();
   String? _date;
   String _initialValue = 'Others';
+  //String? _initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
+            child: TextField(
               controller: titleController,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
@@ -35,22 +36,11 @@ class _ExpenseFormState extends State<ExpenseForm> {
                 labelText: 'Title',
                 prefixIcon: Icon(Icons.person),
               ),
-              validator: (value) {
-                if(value== null || value.isEmpty) {
-                  return 'Name is required';
-                }
-                if(value.length>30) {
-                  return 'Limit 30 character';
-                }
-                else {
-                  return null;
-                }
-              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
+            child: TextField(
               controller: amountController,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
@@ -59,17 +49,6 @@ class _ExpenseFormState extends State<ExpenseForm> {
                 labelText: 'Amount',
                 prefixIcon: Icon(Icons.person),
               ),
-              validator: (value) {
-                if(value== null || value.isEmpty) {
-                  return 'Name is required';
-                }
-                if(value.length>30) {
-                  return 'Limit 30 character';
-                }
-                else {
-                  return null;
-                }
-              },
             ),
           ),
           Padding(
@@ -109,32 +88,26 @@ class _ExpenseFormState extends State<ExpenseForm> {
                         ).toList(),
                         value: _initialValue,
                         onChanged: (newValue){
-                          _initialValue = newValue!;
+                          setState(() {
+                            _initialValue = newValue!;
+                          });
                         }),
                   ],
                 ),
               ),
             ),
           ),
-         /* DropdownButton<String>(
-            isExpanded: true,
-            value: _initialValue,
-            hint: const Text('Select Your Blood Group'),
-            items: icons.keys.map((e) =>
-                DropdownMenuItem(
-                    value: e,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(e),
-                    )),
-            ).toList(),
-            onChanged: (value) {
-              setState(() {
-                _initialValue = value!;
-              });
-            },
-          ),*/
-          
+          const SizedBox(height: 20,),
+          ElevatedButton.icon(
+              onPressed: () {
+                if(titleController.text != '' && amountController.text != '') {
+                  if (double.tryParse(amountController.text) != null) {
+                    _getData();
+                  }
+                }
+              },
+              icon: const Icon(Icons.add),
+              label: const Text('Add Expense')),
         ],
       ),
     );
@@ -149,8 +122,32 @@ class _ExpenseFormState extends State<ExpenseForm> {
     if (selectedDate!=null) {
       setState(() {
         _date = DateFormat('dd/MM/yyyy').format(selectedDate);
+        //print(DateFormat.yMd().add_jm().format(selectedDate));
         //_date = DateFormat('hh:mm:a').format(DateTime.now());
       });
     }
+  }
+
+  Future<void> _getData() async {
+    var xDate = _date != null ? _date ! : DateTime.now();
+    print('------------Insert TEST-------------');
+    final expense = Expense(
+      title: titleController.text,
+      amount: double.parse(amountController.text),
+      date: xDate.toString(),
+      category: _initialValue,
+    );
+    print(expense.toString());
+    //final rowId = await DBHelper.insertContact(contact);
+    /*final status = await Provider
+        .of<ExpenseProvider>(context, listen: false)
+        .insertExpense(expense);
+    if (status) {
+      Navigator.pop(context);
+    }
+    else {
+      print('------------Insert failed!-------------');
+    }*/
+
   }
 }
