@@ -19,15 +19,10 @@ class ExpenseProvider extends ChangeNotifier {
 
 
   Future<void> updateCategory(String category, int entries, double totalAmount) async {
-    print('-----------------updateCategory----------------');
-
     var file = _categories.firstWhere((element) => element.title == category);
     file.entries = entries;
     file.totalAmount = totalAmount;
-
-    print('-----------------Print Value----------------');
-    print('$entries & $totalAmount');
-    //await DBHelper.updateCategory(entries, totalAmount);
+    await DBHelper.updateCategory(category, entries, totalAmount);
     notifyListeners();
   }
 

@@ -66,14 +66,14 @@ class DBHelper {
   }
 
   //Update Category
-  static Future<int> updateCategory(int entries, double totalAmount) async {
+  static Future<int> updateCategory(String category, int entries, double totalAmount) async {
     final db = await open();
     return db.update(tableExpCategory, {
       expenseCatColEntries: entries,
       expenseCatColTotalAmount: totalAmount
     },
         where: '$expenseCatColTitle = ?',
-        whereArgs: [expenseCatColTitle]);
+        whereArgs: [category]);
   }
 
   static Future<int> insertExpense(Expense expense) async{
