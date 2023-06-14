@@ -1,5 +1,4 @@
 
-import 'package:expense_tracker_app/models/exp_category_model.dart';
 import 'package:expense_tracker_app/pages/expens_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,8 +39,13 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
               color: Colors.white70,
               child: ListTile(
                 onTap: () {
-                  Navigator.of(context).pushNamed(ExpensePage.routeName,
-                  arguments: model.title);
+                  //Navigator.of(context).pushNamed(ExpensePage.routeName,
+                  //arguments: Expense: expense);
+
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) =>
+                        ExpensePage(expenseCategory: model,)),
+                  );
                 },
                 leading: Icon(model.icon,size: 35,color: Colors.blue,),
                 title: Text(model.title,style: const TextStyle(fontSize: 16,color: Colors.blue)),
