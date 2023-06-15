@@ -28,11 +28,11 @@ class CategoryList extends StatelessWidget {
                         ExpensePage(expenseCategory: model)),
                   );
                 },
-                leading: Icon(model.icon,size: 35,color: Colors.blue,),
+                leading: Icon(model.icon,size: 30,color: Colors.blue,),
                 title: Text(model.title,style: const TextStyle(fontSize: 16,color: Colors.blue)),
                 subtitle: Text('entries: ${model.entries}'),
                 trailing: Text('৳ ${model.totalAmount.toStringAsFixed(2)}',
-                    style: const TextStyle(fontSize: 16,color: Colors.blue)),
+                    style: const TextStyle(fontSize: 16,)),
               ),
             );
           }

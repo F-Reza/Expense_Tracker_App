@@ -1,3 +1,4 @@
+
 import 'package:flutter/foundation.dart';
 import '../db/db_helper.dart';
 import '../models/exp_category_model.dart';
@@ -19,7 +20,7 @@ class ExpenseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
+  //Get Expense
   getExpense(String title) async{
     _expenses = await DBHelper.getExpensesByTitle(title);
     notifyListeners();
@@ -53,22 +54,90 @@ class ExpenseProvider extends ChangeNotifier {
     return false;
   }
 
+  getAllExpense() async{
+    _expenses = await DBHelper.getAllExpense();
+    notifyListeners();
+  }
+
+
+  //Delete Expense
+  Future<void> deleteExpense(int expId, String category, double amount) async {
+
+    _expenses.removeWhere((element) => element.id == expId);
+    notifyListeners();
+
+    var ex = findCategory(category);
+    updateCategory(
+        category,
+        ex.entries - 1,
+        ex.totalAmount - amount
+    );
+    notifyListeners();
+  }
+
+  deleteExpense1(int expId, String category, double amount) async {
+    final rowId = await DBHelper.deleteExpense1(expId);
+    if(rowId > 0) {
+      _expenses.removeWhere((element) => element.id == expId);
+      notifyListeners();
+
+      var ex = findCategory(category);
+      updateCategory(
+          category,
+          ex.entries - 1,
+          ex.totalAmount - amount
+      );
+    }
+  }
+
+
+
   ExpenseCategory findCategory(String title) {
     return _categories.firstWhere((element) => element.title == title);
   }
-  /*Map<String, dynamic> calculateEntriesAndAmount(String category) {
+
+  //Calculate Entries And Amount
+  Map<String, dynamic> calculateEntriesAndAmount(String category) {
     double total = 0.0;
     var list = _expenses.where((element) => element.category == category);
     for (final i in list) {
       total += i.amount;
     }
     return {'entries': list.length, 'totalAmount': total};
-  }*/
+  }
 
   //Calculate Total Expenses
   double calculateTotalExpenses() {
     return _categories.fold(
         0.0, (previousValue, element) => previousValue + element.totalAmount);
+  }
+
+  List<Map<String, dynamic>> calculateWeekExpenses() {
+    List<Map<String, dynamic>> data = [];
+
+    // we know that we need 7 entries
+    for (int i = 0; i < 7; i++) {
+      // 1 total for each entry
+      double total = 0.0;
+      // subtract i from today to get previous dates.
+      final weekDay = DateTime.now().subtract(Duration(days: i));
+
+      // check how many transacitons happened that day
+      /*for (int j = 0; j < _expenses.length; j++) {
+        var year =1;
+        if (_expenses[j].date.year == weekDay.year &&
+            _expenses[j].date.month == weekDay.month &&
+            _expenses[j].date.day == weekDay.day) {
+          // if found then add the amount to total
+          total += _expenses[j].amount;
+        }
+      }*/
+
+      // add to a list
+      data.add({'day': weekDay, 'amount': total});
+    }
+    // return the list
+    return data;
   }
 
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
-
 import '../../provider/expense_provider.dart';
 
 class TotalChart extends StatefulWidget {
@@ -28,10 +27,19 @@ class _TotalChartState extends State<TotalChart> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Total Expense: $totalExp',style: const TextStyle(fontSize: 16,),),
+                    FittedBox(
+                      alignment: Alignment.center,
+                      fit: BoxFit.scaleDown,
+                      child: Text('Total Expense: $totalExp',
+                        textScaleFactor: 1.1,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          ),
+                      ),
+                    ),
                     const SizedBox(height: 5,),
                     ...list.map((e) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Row(
                         children: [
                           Container(

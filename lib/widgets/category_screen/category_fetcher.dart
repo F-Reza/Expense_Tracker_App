@@ -45,7 +45,7 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
                     elevation: 5,
                     color: Colors.white,
                     child: SizedBox(
-                      height: 220,
+                      height: 190,
                       child: TotalChart(),
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/expense_provider.dart';
+import '../all_expenses_screen/expense_chart.dart';
 import 'expense_list.dart';
 
 class ExpenseFetcher extends StatefulWidget {
@@ -34,7 +35,20 @@ class _ExpenseFetcherState extends State<ExpenseFetcher> {
           if (snapshot.hasError) {
             return const Center(child: Text('Failed to fetch data'));
           } else {
-            return const ExpenseList();
+            return Column(
+              children: [
+                const SizedBox(height: 25,),
+                Card(
+                  elevation: 5,
+                  color: Colors.white,
+                  child: SizedBox(
+                    height: 250,
+                    child: ExpenseChart(widget.category),
+                  ),
+                ),
+                const Expanded(child: ExpenseList()),
+              ],
+            );
           }
         } else {
           return const CircularProgressIndicator();

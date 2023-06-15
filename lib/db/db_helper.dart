@@ -76,6 +76,7 @@ class DBHelper {
         Expense.fromMap(mapList[index]));
   }
 
+
   //Get All Expenses
   static Future<List<Expense>> getAllExpense() async{
     final db = await open();
@@ -98,6 +99,19 @@ class DBHelper {
   static Future<int> insertExpense(Expense expense) async{
     final db = await open();
     return db.insert(tableExpense, expense.toMap());
+  }
+
+  //Update Category
+  static Future<int> deleteExpense(int expId, String category, double amount) async {
+    final db = await open();
+    return db.delete(tableExpense, where: '$expenseColId = ?', whereArgs: [expId]);
+  }
+
+
+  //Delete Data
+  static Future<int> deleteExpense1(int expId) async {
+    final db = await open();
+    return db.delete(tableExpense, where: '$expenseColId = ?', whereArgs: [expId]);
   }
 
 
