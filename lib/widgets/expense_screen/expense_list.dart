@@ -11,7 +11,7 @@ class ExpenseList extends StatelessWidget {
         builder: (context, provider, _) {
           var exList = provider.expenseList;
           return exList.isEmpty ?
-          const Center(child: Text('isEmpty')):
+          const Center(child: Text('isEmpty!')):
           ListView.builder(
             itemCount: exList.length,
             itemBuilder: (context, i) => Card(

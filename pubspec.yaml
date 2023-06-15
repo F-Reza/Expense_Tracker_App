@@ -16,6 +16,7 @@ dependencies:
   url_launcher:
   intl:
   path:
+  fl_chart:
   draggable_fab:
 
 dev_dependencies:

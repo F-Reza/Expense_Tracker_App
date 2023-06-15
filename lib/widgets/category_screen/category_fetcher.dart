@@ -1,5 +1,7 @@
 
+import 'package:expense_tracker_app/models/exp_category_model.dart';
 import 'package:expense_tracker_app/pages/expens_page.dart';
+import 'package:expense_tracker_app/widgets/category_screen/category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,44 +17,40 @@ class CategoryFetcher extends StatefulWidget {
 
 class _CategoryFetcherState extends State<CategoryFetcher> {
 
+  late Future _categoryList;
   Future _getCategoryList() async {
     final provider = Provider.of<ExpenseProvider>(context, listen: false);
     return await provider.getCategories();
   }
-  
+
   @override
   void initState() {
-    _getCategoryList();
+    _categoryList = _getCategoryList();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ExpenseProvider>(
-      builder: (context, provider, _) => ListView.builder(
-          itemCount: provider.categories.length,
-          itemBuilder: (context, index) {
-            final model = provider.categories[index];
-            //print('-------$contact');
-            return Card(
-              elevation: 5,
-              color: Colors.white70,
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) =>
-                        ExpensePage(expenseCategory: model)),
-                  );
-                },
-                leading: Icon(model.icon,size: 35,color: Colors.blue,),
-                title: Text(model.title,style: const TextStyle(fontSize: 16,color: Colors.blue)),
-                subtitle: Text('entries: ${model.entries}'),
-                trailing: Text('৳ ${model.totalAmount.toStringAsFixed(2)}',
-                    style: const TextStyle(fontSize: 16,color: Colors.blue)),
-              ),
-            );
-          }),
+    return FutureBuilder(
+        future:_categoryList,
+        builder: (context, snapshot){
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              return const Center(child: Text('Failed to fetch data'));
+            } else {
+              return Column(
+                children: [
+                  const SizedBox(height: 250,),
+                  Expanded(child: const CategoryList()),
+                ],
+              );
+            }
+          } else {
+            return const CircularProgressIndicator();
+          }
+        }
     );
   }
 }
+
 
