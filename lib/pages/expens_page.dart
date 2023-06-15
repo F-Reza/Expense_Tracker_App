@@ -13,13 +13,12 @@ class ExpensePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ExpenseProvider>(context, listen: false);
     var category = expenseCategory!.title;
     return Scaffold(
       appBar: AppBar(
         title: Text(category),
       ),
-      body: const ExpenseFetcher(),
+      body: ExpenseFetcher(category),
     );
   }
 }

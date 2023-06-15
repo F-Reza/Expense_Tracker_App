@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../models/expense_model.dart';
 import '../../provider/expense_provider.dart';
+import 'expense_list.dart';
 
 class ExpenseFetcher extends StatefulWidget {
-  const ExpenseFetcher({super.key});
+  const ExpenseFetcher(this.category, {super.key});
+  final String category;
 
   @override
   State<ExpenseFetcher> createState() => _ExpenseFetcherState();
@@ -13,52 +13,33 @@ class ExpenseFetcher extends StatefulWidget {
 
 class _ExpenseFetcherState extends State<ExpenseFetcher> {
 
+  late Future _expenseList;
   Future _getExpenseList() async {
     final provider = Provider.of<ExpenseProvider>(context, listen: false);
-    return await provider.getAllExpense('Transport');
-    //return await provider.getExpensesByTitle('Transport');
+    return await provider.getExpense(widget.category);
   }
 
   @override
   void initState() {
-    _getExpenseList();
+    _expenseList = _getExpenseList();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ExpenseProvider>(context, listen: false);
-    return ListView.builder(
-        itemCount: provider.expenseList.length,
-        itemBuilder: (context, index) {
-          final model = provider.expenseList[index];
-          print('-------$model');
-          return Card(
-            elevation: 5,
-            color: Colors.white70,
-            child: ListTile(
-              title: Text(model.category,
-                  style: const TextStyle(fontSize: 16, color: Colors.blue)),
-            ),
-          );
-        });
-    /*return FutureBuilder<Expense>(
-        future: provider.getExpensesByTitle('title'),
-        builder: (context, snapshot){
-          if(snapshot.hasData) {
-            final model = snapshot.data;
-            return Card(
-              child: ListTile(
-                title: Text(model!.title),
-                ),
-              );
-          }
-          if(snapshot.hasError){
+    return FutureBuilder(
+      future:_expenseList,
+      builder: (context, snapshot){
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasError) {
             return const Center(child: Text('Failed to fetch data'));
+          } else {
+            return const ExpenseList();
           }
+        } else {
           return const CircularProgressIndicator();
-        },
-      );*/
-
+        }
+      }
+    );
   }
 }

@@ -39,9 +39,6 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
               color: Colors.white70,
               child: ListTile(
                 onTap: () {
-                  //Navigator.of(context).pushNamed(ExpensePage.routeName,
-                  //arguments: Expense: expense);
-
                   Navigator.push(context,
                     MaterialPageRoute(builder: (context) =>
                         ExpensePage(expenseCategory: model)),

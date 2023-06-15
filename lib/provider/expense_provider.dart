@@ -20,14 +20,8 @@ class ExpenseProvider extends ChangeNotifier {
   }
 
 
-  /*getExpensesByTitle(String title) async {
-   expensesByCat = await DBHelper.getExpensesByTitle(title);
-  }*/
-  Future<Future<List<Expense>>> getExpensesByTitle(String title) async => DBHelper.getExpensesByTitle(title);
-  //Future<Expense> getExpensesByTitle(String title) async => DBHelper.getExpensesByTitle(title);
-
-  getAllExpense(String title) async{
-    _expenses = await DBHelper.getAllExpense();
+  getExpense(String title) async{
+    _expenses = await DBHelper.getExpensesByTitle(title);
     notifyListeners();
   }
 

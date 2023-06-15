@@ -69,6 +69,7 @@ class DBHelper {
   static Future<List<Expense>> getExpensesByTitle(String title) async {
     final db = await open();
     final mapList = await db.query(tableExpense,
+        orderBy: '$expenseColDateTime desc',
         where: '$expenseColCategory = ?',
         whereArgs: [title]);
     return List.generate(mapList.length, (index) =>
