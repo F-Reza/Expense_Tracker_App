@@ -25,7 +25,7 @@ class Expense{
   Map <String, dynamic> toMap() {
     var map = <String,dynamic> {
       expenseColTitle: title,
-      expenseColAmount: amount,
+      expenseColAmount: amount.toString(),
       expenseColDateTime: date,
       expenseColCategory: category,
     };
@@ -38,7 +38,8 @@ class Expense{
   factory Expense.fromMap(Map<String, dynamic> map) => Expense(
       id: map[expenseColId],
       title: map[expenseColTitle],
-      amount: map[expenseColAmount],
+      //amount: map[expenseColAmount],
+      amount: double.parse(map[expenseColAmount]),
       date: map[expenseColDateTime],
       category: map[expenseColCategory],);
 

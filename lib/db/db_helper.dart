@@ -65,6 +65,24 @@ class DBHelper {
         ExpenseCategory.fromMap(mapList[index]));
   }
 
+  //Get Expenses By Title
+  static Future<List<Expense>> getExpensesByTitle(String title) async {
+    final db = await open();
+    final mapList = await db.query(tableExpense,
+        where: '$expenseColCategory = ?',
+        whereArgs: [title]);
+    return List.generate(mapList.length, (index) =>
+        Expense.fromMap(mapList[index]));
+  }
+
+  //Get All Expenses
+  static Future<List<Expense>> getAllExpense() async{
+    final db = await open();
+    final mapList = await db.query(tableExpense);
+    return List.generate(mapList.length, (index) =>
+        Expense.fromMap(mapList[index]));
+  }
+
   //Update Category
   static Future<int> updateCategory(String category, int entries, double totalAmount) async {
     final db = await open();
@@ -82,14 +100,7 @@ class DBHelper {
   }
 
 
-  //Get Data by ID
-  static Future<Expense> getExpensesByTitle(String title) async {
-    final db = await open();
-    final mapList = await db.query(tableExpense,
-        where: '$expenseColTitle = ?',
-        whereArgs: [title]);
-    return Expense.fromMap(mapList.first);
-  }
+
 
 
 

@@ -11,13 +11,25 @@ class ExpenseProvider extends ChangeNotifier {
   List<Expense> _expenses = [];
   List<Expense> get expenseList => _expenses;
 
+  List<Expense> expensesByCat = [];
+
   //Get Categories
   getCategories() async{
     _categories = await DBHelper.getCategories();
     notifyListeners();
   }
 
-  Future<Expense> getExpensesByTitle(String title) async => DBHelper.getExpensesByTitle(title);
+
+  /*getExpensesByTitle(String title) async {
+   expensesByCat = await DBHelper.getExpensesByTitle(title);
+  }*/
+  Future<Future<List<Expense>>> getExpensesByTitle(String title) async => DBHelper.getExpensesByTitle(title);
+  //Future<Expense> getExpensesByTitle(String title) async => DBHelper.getExpensesByTitle(title);
+
+  getAllExpense(String title) async{
+    _expenses = await DBHelper.getAllExpense();
+    notifyListeners();
+  }
 
   //Update Category
   Future<void> updateCategory(String category, int entries, double totalAmount) async {
