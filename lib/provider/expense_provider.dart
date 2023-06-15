@@ -65,7 +65,7 @@ class ExpenseProvider extends ChangeNotifier {
     return {'entries': list.length, 'totalAmount': total};
   }*/
 
-
+  //Calculate Total Expenses
   double calculateTotalExpenses() {
     return _categories.fold(
         0.0, (previousValue, element) => previousValue + element.totalAmount);

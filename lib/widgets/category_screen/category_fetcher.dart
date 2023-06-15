@@ -1,6 +1,7 @@
 
 import 'package:expense_tracker_app/models/exp_category_model.dart';
 import 'package:expense_tracker_app/pages/expens_page.dart';
+import 'package:expense_tracker_app/widgets/all_expenses_screen/total_chart.dart';
 import 'package:expense_tracker_app/widgets/category_screen/category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,10 +39,17 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
             if (snapshot.hasError) {
               return const Center(child: Text('Failed to fetch data'));
             } else {
-              return Column(
+              return const Column(
                 children: [
-                  const SizedBox(height: 250,),
-                  Expanded(child: const CategoryList()),
+                  Card(
+                    elevation: 5,
+                    color: Colors.white,
+                    child: SizedBox(
+                      height: 220,
+                      child: TotalChart(),
+                    ),
+                  ),
+                  Expanded(child: CategoryList()),
                 ],
               );
             }
