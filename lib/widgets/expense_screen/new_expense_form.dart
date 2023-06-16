@@ -119,11 +119,24 @@ class _ExpenseFormState extends State<ExpenseForm> {
     final selectedDate = await showDatePicker(context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2023),
-        lastDate: DateTime.now());
+        lastDate: DateTime.now()
+    );
 
     if (selectedDate!=null) {
       setState(() {
-        _date = selectedDate;
+
+        DateTime now = DateTime.now();
+        _date = DateTime(
+            selectedDate.year,
+            selectedDate.month,
+            selectedDate.day,
+            now.hour,
+            now.minute,
+            now.second,
+            now.millisecond,
+            now.microsecond
+        );
+        //_date = selectedDate;
         //print(DateFormat.yMd().add_jm().format(selectedDate));
         //_date = DateFormat('dd/MM/yyyy').format(selectedDate);
         //_date = DateFormat('hh:mm:a').format(DateTime.now());

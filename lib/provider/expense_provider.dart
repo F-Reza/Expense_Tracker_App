@@ -121,9 +121,7 @@ class ExpenseProvider extends ChangeNotifier {
 
       final weekDay = DateTime.now().subtract(Duration(days: i));
 
-      // check how many transacitons happened that day
       for (int j = 0; j < _expenses.length; j++) {
-
         var year =1;
         if (_expenses[j].date.year == weekDay.year &&
             _expenses[j].date.month == weekDay.month &&
