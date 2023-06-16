@@ -30,6 +30,7 @@ class _ExpenseChartState extends State<ExpenseChart> {
                     x: list.indexOf(e),
                     barRods: [
                       BarChartRodData(
+                        color: Colors.amber,
                         toY: e['amount'],
                         width: 20.0,
                         borderRadius: BorderRadius.zero,
@@ -38,6 +39,11 @@ class _ExpenseChartState extends State<ExpenseChart> {
                   ),
                 ),
               ],
+              titlesData: FlTitlesData(
+                topTitles: AxisTitles(
+                  drawBelowEverything: true,
+                ),
+              ),//End
           ),
         );
       }
