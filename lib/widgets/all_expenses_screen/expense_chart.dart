@@ -1,4 +1,5 @@
 
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +22,7 @@ class _ExpenseChartState extends State<ExpenseChart> {
         builder: (context, provider, _) {
           var maxY = provider.calculateEntriesAndAmount(widget.category)['totalAmount'];
           var list = provider.calculateWeekExpenses().reversed.toList();
-          return BarChart(
+          return list.isEmpty? const Center(child: Text('isEmpty!')): BarChart(
             BarChartData(
               minY: 0,
               maxY: maxY,

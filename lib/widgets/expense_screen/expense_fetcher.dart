@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../provider/expense_provider.dart';
@@ -35,9 +37,11 @@ class _ExpenseFetcherState extends State<ExpenseFetcher> {
           if (snapshot.hasError) {
             return const Center(child: Text('Failed to fetch data'));
           } else {
+            final provider = Provider.of<ExpenseProvider>(context, listen: false);
+            var expList = provider.expenseList;
             return Column(
               children: [
-                //const SizedBox(height: 25,),
+                  expList.isEmpty? const SizedBox():
                 Card(
                   elevation: 5,
                   color: Colors.white,
