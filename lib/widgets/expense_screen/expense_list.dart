@@ -1,5 +1,6 @@
 import 'package:expense_tracker_app/provider/expense_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ExpenseList extends StatelessWidget {
@@ -18,7 +19,8 @@ class ExpenseList extends StatelessWidget {
               elevation: 1,
               child: ListTile(
                 title: Text(exList[i].title),
-                subtitle: Text(exList[i].date.toString()),
+                subtitle: Text(DateFormat('dd, MMM, yyyy, hh:mm:a').format(exList[i].date)),
+                //subtitle: Text(exList[i].date.toString()),
                 trailing: Text('৳ ${exList[i].amount.toStringAsFixed(2)}'),
               ),
             ),

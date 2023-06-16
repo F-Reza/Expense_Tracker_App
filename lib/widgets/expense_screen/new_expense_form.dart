@@ -16,7 +16,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-  String? _date;
+  DateTime? _date;
   String _initialValue = 'Others';
   //String? _initialValue;
 
@@ -61,7 +61,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(_date==null ?'Select Date' : _date!),
+                    Text(_date == null ?'Select Date' : _date!.toString()),
                     IconButton(
                         onPressed: () => _pickDate(),
                         icon: const Icon(Icons.calendar_month)),
@@ -123,8 +123,9 @@ class _ExpenseFormState extends State<ExpenseForm> {
 
     if (selectedDate!=null) {
       setState(() {
-        _date = DateFormat('dd/MM/yyyy').format(selectedDate);
+        _date = selectedDate;
         //print(DateFormat.yMd().add_jm().format(selectedDate));
+        //_date = DateFormat('dd/MM/yyyy').format(selectedDate);
         //_date = DateFormat('hh:mm:a').format(DateTime.now());
       });
     }
@@ -136,10 +137,11 @@ class _ExpenseFormState extends State<ExpenseForm> {
     final expense = Expense(
       title: titleController.text,
       amount: double.parse(amountController.text),
-      date: xDate.toString(),
+      //date: xDate.toString(),
+      date: DateTime.parse(xDate.toString()),
       category: _initialValue,
     );
-    print(expense.toString());
+    //print("---------------${expense.toString()}");
     //final rowId = await DBHelper.insertContact(contact);
     final status = await Provider
         .of<ExpenseProvider>(context, listen: false)

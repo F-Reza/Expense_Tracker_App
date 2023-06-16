@@ -12,7 +12,7 @@ class Expense{
   int? id;
   String title;
   double amount;
-  String? date;
+  DateTime date;
   String category;
 
   Expense({
@@ -26,7 +26,7 @@ class Expense{
     var map = <String,dynamic> {
       expenseColTitle: title,
       expenseColAmount: amount.toString(),
-      expenseColDateTime: date,
+      expenseColDateTime: date.toString(),
       expenseColCategory: category,
     };
     if(id != null){
@@ -38,9 +38,8 @@ class Expense{
   factory Expense.fromMap(Map<String, dynamic> map) => Expense(
       id: map[expenseColId],
       title: map[expenseColTitle],
-      //amount: map[expenseColAmount],
       amount: double.parse(map[expenseColAmount]),
-      date: map[expenseColDateTime],
+      date: DateTime.parse(map[expenseColDateTime]),
       category: map[expenseColCategory],);
 
   @override

@@ -112,26 +112,26 @@ class ExpenseProvider extends ChangeNotifier {
         0.0, (previousValue, element) => previousValue + element.totalAmount);
   }
 
+  //Calculate Week Expenses
   List<Map<String, dynamic>> calculateWeekExpenses() {
     List<Map<String, dynamic>> data = [];
 
-    // we know that we need 7 entries
     for (int i = 0; i < 7; i++) {
-      // 1 total for each entry
       double total = 0.0;
-      // subtract i from today to get previous dates.
+
       final weekDay = DateTime.now().subtract(Duration(days: i));
 
       // check how many transacitons happened that day
-      /*for (int j = 0; j < _expenses.length; j++) {
+      for (int j = 0; j < _expenses.length; j++) {
+
         var year =1;
         if (_expenses[j].date.year == weekDay.year &&
             _expenses[j].date.month == weekDay.month &&
-            _expenses[j].date.day == weekDay.day) {
-          // if found then add the amount to total
+            _expenses[j].date.day == weekDay.day)
+        {
           total += _expenses[j].amount;
         }
-      }*/
+      }
 
       // add to a list
       data.add({'day': weekDay, 'amount': total});
