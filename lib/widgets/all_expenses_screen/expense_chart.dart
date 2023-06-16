@@ -1,6 +1,7 @@
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/expense_provider.dart';
@@ -40,8 +41,21 @@ class _ExpenseChartState extends State<ExpenseChart> {
                 ),
               ],
               titlesData: FlTitlesData(
-                topTitles: AxisTitles(
+                topTitles: const AxisTitles(
                   drawBelowEverything: true,
+                ),
+                leftTitles: const AxisTitles(
+                  drawBelowEverything: true,
+                ),
+                rightTitles: const AxisTitles(
+                  drawBelowEverything: true,
+                ),
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    getTitlesWidget: (value, _) => Text(DateFormat.E()
+                            .format(list[value.toInt()]['day'])),
+                  ),
                 ),
               ),//End
           ),

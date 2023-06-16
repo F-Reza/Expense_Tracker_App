@@ -16,7 +16,7 @@ class ExpenseList extends StatelessWidget {
           ListView.builder(
             itemCount: exList.length,
             itemBuilder: (context, i) => Card(
-              elevation: 1,
+              elevation: 2,
               child: ListTile(
                 title: Text(exList[i].title),
                 subtitle: Text(DateFormat('dd, MMM, yyyy, hh:mm:a').format(exList[i].date)),

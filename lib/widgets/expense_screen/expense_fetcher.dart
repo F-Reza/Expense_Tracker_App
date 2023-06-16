@@ -37,13 +37,16 @@ class _ExpenseFetcherState extends State<ExpenseFetcher> {
           } else {
             return Column(
               children: [
-                const SizedBox(height: 25,),
+                //const SizedBox(height: 25,),
                 Card(
                   elevation: 5,
                   color: Colors.white,
                   child: SizedBox(
                     height: 250,
-                    child: ExpenseChart(widget.category),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ExpenseChart(widget.category),
+                    ),
                   ),
                 ),
                 const Expanded(child: ExpenseList()),

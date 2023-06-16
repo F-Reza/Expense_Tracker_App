@@ -118,23 +118,18 @@ class ExpenseProvider extends ChangeNotifier {
 
     for (int i = 0; i < 7; i++) {
       double total = 0.0;
-
       final weekDay = DateTime.now().subtract(Duration(days: i));
 
       for (int j = 0; j < _expenses.length; j++) {
-        var year =1;
         if (_expenses[j].date.year == weekDay.year &&
             _expenses[j].date.month == weekDay.month &&
-            _expenses[j].date.day == weekDay.day)
-        {
+            _expenses[j].date.day == weekDay.day) {
           total += _expenses[j].amount;
         }
       }
 
-      // add to a list
       data.add({'day': weekDay, 'amount': total});
     }
-    // return the list
     return data;
   }
 
