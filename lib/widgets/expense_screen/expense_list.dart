@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../constants/icons.dart';
+
 class ExpenseList extends StatelessWidget {
   const ExpenseList({super.key});
 
@@ -18,6 +20,7 @@ class ExpenseList extends StatelessWidget {
             itemBuilder: (context, i) => Card(
               elevation: 2,
               child: ListTile(
+                leading: Icon(icons[exList[i].category],size: 30,),
                 title: Text(exList[i].title),
                 subtitle: Text(DateFormat('dd, MMM, yyyy, hh:mm:a').format(exList[i].date)),
                 //subtitle: Text(exList[i].date.toString()),

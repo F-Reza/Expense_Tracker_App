@@ -2,6 +2,8 @@ import 'package:expense_tracker_app/provider/expense_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'all_expense_list.dart';
+
 class AllExpensesFetcher extends StatefulWidget {
   const AllExpensesFetcher({super.key});
 
@@ -32,19 +34,9 @@ class _AllExpensesFetcherState extends State<AllExpensesFetcher> {
             if (snapshot.hasError) {
               return const Center(child: Text('Failed to fetch data'));
             } else {
-              final provider = Provider.of<ExpenseProvider>(context, listen: false);
-              var expList = provider.expenseList;
-              return Column(
+              return const Column(
                 children: [
-                  expList.isEmpty? const SizedBox():
-                  Card(
-                    elevation: 5,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('data'),
-                    ),
-                  ),
+                  Expanded(child: AllExpensesList()),
                 ],
               );
             }
@@ -55,3 +47,4 @@ class _AllExpensesFetcherState extends State<AllExpensesFetcher> {
     );
   }
 }
+
