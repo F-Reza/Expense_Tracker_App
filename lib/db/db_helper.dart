@@ -101,20 +101,17 @@ class DBHelper {
     return db.insert(tableExpense, expense.toMap());
   }
 
-  //Update Category
-  static Future<int> deleteExpense(int expId, String category, double amount) async {
-    final db = await open();
-    return db.delete(tableExpense, where: '$expenseColId = ?', whereArgs: [expId]);
-  }
-
 
   //Delete Data
-  static Future<int> deleteExpense1(int expId) async {
+  static Future<int> deleteExpense(Expense expense) async {
+    final db = await open();
+    return db.delete(tableExpense, where: '$expenseColId = ?', whereArgs: [expense.id]);
+  }
+  //Update Category
+  static Future<int> deleteExpense1(int expId, String category, double amount) async {
     final db = await open();
     return db.delete(tableExpense, where: '$expenseColId = ?', whereArgs: [expId]);
   }
-
-
 
 
 

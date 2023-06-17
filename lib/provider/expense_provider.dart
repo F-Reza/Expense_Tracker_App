@@ -73,11 +73,23 @@ class ExpenseProvider extends ChangeNotifier {
 
 
   //Delete Expense
-  Future<void> deleteExpense(int expId, String category, double amount) async {
+  deleteExpense(Expense expense) async {
+    await DBHelper.deleteExpense(expense);
+      _expenses.removeWhere((element) => element.id == expense.id);
+      notifyListeners();
 
+      var ex = findCategory(expense.category);
+      updateCategory(
+          expense.category,
+          ex.entries - 1,
+          ex.totalAmount - expense.amount
+      );
+  }
+
+  Future<void> deleteExpense1(int expId, String category, double amount) async {
+    await DBHelper.deleteExpense1(expId, category, amount);
     _expenses.removeWhere((element) => element.id == expId);
     notifyListeners();
-
     var ex = findCategory(category);
     updateCategory(
         category,
@@ -85,21 +97,6 @@ class ExpenseProvider extends ChangeNotifier {
         ex.totalAmount - amount
     );
     notifyListeners();
-  }
-
-  deleteExpense1(int expId, String category, double amount) async {
-    final rowId = await DBHelper.deleteExpense1(expId);
-    if(rowId > 0) {
-      _expenses.removeWhere((element) => element.id == expId);
-      notifyListeners();
-
-      var ex = findCategory(category);
-      updateCategory(
-          category,
-          ex.entries - 1,
-          ex.totalAmount - amount
-      );
-    }
   }
 
 
