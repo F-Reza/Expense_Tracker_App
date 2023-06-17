@@ -107,11 +107,6 @@ class DBHelper {
     final db = await open();
     return db.delete(tableExpense, where: '$expenseColId = ?', whereArgs: [expense.id]);
   }
-  //Update Category
-  static Future<int> deleteExpense1(int expId, String category, double amount) async {
-    final db = await open();
-    return db.delete(tableExpense, where: '$expenseColId = ?', whereArgs: [expId]);
-  }
 
 
 

@@ -86,18 +86,6 @@ class ExpenseProvider extends ChangeNotifier {
       );
   }
 
-  Future<void> deleteExpense1(int expId, String category, double amount) async {
-    await DBHelper.deleteExpense1(expId, category, amount);
-    _expenses.removeWhere((element) => element.id == expId);
-    notifyListeners();
-    var ex = findCategory(category);
-    updateCategory(
-        category,
-        ex.entries - 1,
-        ex.totalAmount - amount
-    );
-    notifyListeners();
-  }
 
 
 
