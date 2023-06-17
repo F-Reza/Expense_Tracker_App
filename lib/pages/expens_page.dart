@@ -4,7 +4,7 @@ import '../widgets/expense_screen/expense_fetcher.dart';
 
 
 class ExpensePage extends StatelessWidget {
-  static const String routeName = '/Expense';
+  static const String routeName = '/expense';
   const ExpensePage({super.key, this.expenseCategory});
   final ExpenseCategory? expenseCategory;
 

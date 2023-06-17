@@ -4,6 +4,7 @@ import 'package:expense_tracker_app/widgets/category_screen/category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../pages/all_expenses.dart';
 import '../../provider/expense_provider.dart';
 
 
@@ -37,9 +38,9 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
             if (snapshot.hasError) {
               return const Center(child: Text('Failed to fetch data'));
             } else {
-              return const Column(
+              return Column(
                 children: [
-                  Card(
+                  const Card(
                     elevation: 5,
                     color: Colors.white,
                     child: SizedBox(
@@ -47,12 +48,27 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
                       child: TotalChart(),
                     ),
                   ),
-                  Expanded(child: CategoryList()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Expenses',
+                          style: TextStyle(fontWeight: FontWeight.w500),),
+                        TextButton(onPressed: () {
+                          Navigator.pushNamed(context, AllExpense.routeName);
+                        }, child: const Text('View All',
+                          style: TextStyle(fontWeight: FontWeight.w500),),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Expanded(child: CategoryList()),
                 ],
               );
             }
           } else {
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }
         }
     );
