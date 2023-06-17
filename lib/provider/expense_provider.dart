@@ -10,9 +10,21 @@ class ExpenseProvider extends ChangeNotifier {
   List<ExpenseCategory> get categories => _categories;
 
   List<Expense> _expenses = [];
-  List<Expense> get expenseList => _expenses;
+  List<Expense> get expenseList {
+    return _searchText != ''?
+    _expenses.where((e) =>
+    e.title.toLowerCase().contains(_searchText.toLowerCase()) ).toList()
+        : _expenses;
+  }
 
-  List<Expense> expensesByCat = [];
+
+  //Search Expense
+  String _searchText = '';
+  String get searchText => _searchText;
+  set searchText(String value) {
+    _searchText = value;
+    notifyListeners();
+  }
 
   //Get Categories
   getCategories() async{
@@ -133,6 +145,8 @@ class ExpenseProvider extends ChangeNotifier {
     }
     return data;
   }
+
+
 
 
 }

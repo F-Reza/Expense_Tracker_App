@@ -12,9 +12,7 @@ class AllExpensesList extends StatelessWidget {
     return Consumer<ExpenseProvider>(
       builder: (context, provider, _) {
         var expList = provider.expenseList;
-        return expList.isEmpty ?
-        const Center(child: Text('isEmpty!')):
-        ListView.builder(
+        return ListView.builder(
           itemCount: expList.length,
           itemBuilder: (context, i) => Card(
             elevation: 3,
@@ -22,7 +20,6 @@ class AllExpensesList extends StatelessWidget {
               leading: Icon(icons[expList[i].category],size: 30,),
               title: Text(expList[i].title),
               subtitle: Text(DateFormat('dd, MMM, yyyy, hh:mm:a').format(expList[i].date)),
-              //subtitle: Text(exList[i].date.toString()),
               trailing: Text('৳ ${expList[i].amount.toStringAsFixed(2)}'),
             ),
           ),

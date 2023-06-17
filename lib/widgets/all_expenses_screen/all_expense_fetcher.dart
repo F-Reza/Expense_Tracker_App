@@ -1,8 +1,8 @@
 import 'package:expense_tracker_app/provider/expense_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'all_expense_list.dart';
+import 'search_expense.dart';
 
 class AllExpensesFetcher extends StatefulWidget {
   const AllExpensesFetcher({super.key});
@@ -25,6 +25,9 @@ class _AllExpensesFetcherState extends State<AllExpensesFetcher> {
     super.initState();
   }
 
+  final searchController = TextEditingController();
+  String searchVal = '';
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -36,6 +39,7 @@ class _AllExpensesFetcherState extends State<AllExpensesFetcher> {
             } else {
               return const Column(
                 children: [
+                  SearchExpense(),
                   Expanded(child: AllExpensesList()),
                 ],
               );
