@@ -123,7 +123,8 @@ class ExpenseProvider extends ChangeNotifier {
       for (int j = 0; j < _expenses.length; j++) {
         if (_expenses[j].date.year == weekDay.year &&
             _expenses[j].date.month == weekDay.month &&
-            _expenses[j].date.day == weekDay.day) {
+            _expenses[j].date.day == weekDay.day)
+        {
           total += _expenses[j].amount;
         }
       }

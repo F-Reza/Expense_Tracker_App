@@ -1,6 +1,4 @@
 
-import 'package:expense_tracker_app/models/exp_category_model.dart';
-import 'package:expense_tracker_app/pages/expens_page.dart';
 import 'package:expense_tracker_app/widgets/all_expenses_screen/total_chart.dart';
 import 'package:expense_tracker_app/widgets/category_screen/category_list.dart';
 import 'package:flutter/material.dart';

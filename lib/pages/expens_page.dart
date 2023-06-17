@@ -1,8 +1,5 @@
 import 'package:expense_tracker_app/models/exp_category_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../provider/expense_provider.dart';
 import '../widgets/expense_screen/expense_fetcher.dart';
 
 

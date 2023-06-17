@@ -30,7 +30,7 @@ class _TotalChartState extends State<TotalChart> {
                     FittedBox(
                       alignment: Alignment.center,
                       fit: BoxFit.scaleDown,
-                      child: Text('Total Expense: $totalExp',
+                      child: Text('Total Expense: ৳ $totalExp',
                         textScaleFactor: 1.1,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -50,7 +50,7 @@ class _TotalChartState extends State<TotalChart> {
                           const SizedBox(width: 5,),
                           Text(e.title),
                           const SizedBox(width: 5,),
-                          Text('${(e.totalAmount / totalExp * 100).toStringAsFixed(2)}%'),
+                          Text(totalExp == 0 ? '0%' : '${(e.totalAmount / totalExp * 100).toStringAsFixed(2)}%'),
                         ],
                       ),
                     )),
