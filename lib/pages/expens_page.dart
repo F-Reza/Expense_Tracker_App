@@ -12,6 +12,7 @@ class ExpensePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var category = expenseCategory!.title;
     return Scaffold(
+      backgroundColor: const Color(0xFFCCCCFF),
       appBar: AppBar(
         title: Text(category),
       ),

@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFCCCCFF),
       appBar: AppBar(
         title: const Text('Expense Tracker'),
         centerTitle: true,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../../constants/colors.dart';
 import '../../pages/expens_page.dart';
 import '../../provider/expense_provider.dart';
 
@@ -20,7 +20,7 @@ class CategoryList extends StatelessWidget {
             final model = catList[i];
             return Card(
               elevation: 5,
-              color: Colors.white70,
+              //color: colors[i],
               child: ListTile(
                 onTap: () {
                   Navigator.push(context,

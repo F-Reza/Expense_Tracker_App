@@ -40,12 +40,28 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
             } else {
               return Column(
                 children: [
-                  const Card(
+                  Card(
                     elevation: 5,
-                    color: Colors.white,
-                    child: SizedBox(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFCCCCFF),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade500,
+                                offset: const Offset(4, 4),
+                                blurRadius: 15,
+                                spreadRadius: 1
+                            ),
+                            const BoxShadow(
+                                color: Colors.white,
+                                offset: Offset(-4, -4),
+                                blurRadius: 15,
+                                spreadRadius: 1
+                            ),
+                          ]
+                      ),
                       height: 190,
-                      child: TotalChart(),
+                      child: const TotalChart(),
                     ),
                   ),
                   Padding(
@@ -54,11 +70,11 @@ class _CategoryFetcherState extends State<CategoryFetcher> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text('Expenses',
-                          style: TextStyle(fontWeight: FontWeight.w500),),
+                          style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
                         TextButton(onPressed: () {
                           Navigator.pushNamed(context, AllExpense.routeName);
                         }, child: const Text('View All',
-                          style: TextStyle(fontWeight: FontWeight.w500),),
+                          style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
                         ),
                       ],
                     ),

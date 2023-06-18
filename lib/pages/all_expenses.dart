@@ -13,6 +13,7 @@ class _AllExpenseState extends State<AllExpense> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFCCCCFF),
       appBar: AppBar(
         title: const Text('All Expenses'),
       ),

@@ -14,22 +14,27 @@ class _SearchExpenseState extends State<SearchExpense> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ExpenseProvider>(context, listen: false);
-    return TextField(
-      controller: searchController,
-      onChanged: (value) {
-        provider.searchText = value;
-      },
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.search),
-        hintText: 'Search Expense...',
-        suffixIcon: IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () => {
-            searchController.clear(),
-            provider.searchText = '',
-          },),
-        border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(0.0),),
+    return Padding(
+      padding: const EdgeInsets.all(3.0),
+      child: TextField(
+        controller: searchController,
+        onChanged: (value) {
+          provider.searchText = value;
+        },
+        decoration: InputDecoration(
+          fillColor: const Color(0xFF9FA8DA),
+          filled: true,
+          prefixIcon: const Icon(Icons.search),
+          hintText: 'Search Expense...',
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.clear),
+            onPressed: () => {
+              searchController.clear(),
+              provider.searchText = '',
+            },),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),),
+        ),
       ),
     );
 

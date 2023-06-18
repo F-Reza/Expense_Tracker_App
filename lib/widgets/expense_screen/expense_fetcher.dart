@@ -42,9 +42,24 @@ class _ExpenseFetcherState extends State<ExpenseFetcher> {
               children: [
                   expList.isEmpty? const SizedBox():
                 Card(
-                  elevation: 5,
-                  color: Colors.white,
-                  child: SizedBox(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFCCCCFF),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.shade500,
+                              offset: const Offset(4, 4),
+                              blurRadius: 15,
+                              spreadRadius: 1
+                          ),
+                          const BoxShadow(
+                              color: Colors.white,
+                              offset: Offset(-4, -4),
+                              blurRadius: 15,
+                              spreadRadius: 1
+                          ),
+                        ]
+                    ),
                     height: 250,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

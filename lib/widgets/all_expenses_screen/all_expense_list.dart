@@ -3,6 +3,7 @@ import 'package:expense_tracker_app/models/expense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import '../../constants/colors.dart';
 import '../../provider/expense_provider.dart';
 
 class AllExpensesList extends StatelessWidget {
@@ -17,6 +18,7 @@ class AllExpensesList extends StatelessWidget {
           itemCount: expList.length,
           itemBuilder: (context, i) => Card(
             elevation: 3,
+            color: const Color(0xFFE8EAFE),
             child: Dismissible(
               key: ValueKey(expList[i].id),
               direction: DismissDirection.endToStart,
