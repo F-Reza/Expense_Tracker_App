@@ -1,4 +1,4 @@
-# expense_tracker_app
+# Expense Tracker App
 
 Flutter Expense Tracker App With SqfLite | Provider.
 
