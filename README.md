@@ -4,7 +4,7 @@
 
 A complete expense app that tracks expenses based on categories and displays the pie chart of categories. also displays the line chart for weekly transactions.
 
-| No  | Sued dependencies: |
+| No  | Used dependencies: |
 | ------------- | ------------- |
 | 01  | sqflite  |
 | 02 | intl  |
